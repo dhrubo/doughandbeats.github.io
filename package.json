@@ -1,0 +1,12 @@
+{
+  "name": "doughandbeats-website",
+  "version": "1.0.0",
+  "description": "Dough & Beats website",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}

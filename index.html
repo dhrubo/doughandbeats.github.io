@@ -4,151 +4,127 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Dough & Beats</title>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap');
-
-    body {
-      margin: 0;
-      padding: 0;
-      background: linear-gradient(135deg, #1e1e1e, #2c2c2c);
-      color: #f0f0f0;
-      font-family: 'Poppins', sans-serif;
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      padding: 0 20px;
-    }
-
-    img.logo {
-      width: 180px;
-      height: 180px;
-      border-radius: 50%;
-      border: 4px solid #f8a100;
-      margin-bottom: 25px;
-      box-shadow: 0 0 15px rgba(248, 161, 0, 0.7);
-      object-fit: cover;
-    }
-
-    h1 {
-      font-weight: 600;
-      font-size: 3rem;
-      margin: 0 0 10px 0;
-      letter-spacing: 2px;
-      color: #f8a100;
-      text-transform: uppercase;
-    }
-
-    h2 {
-      font-weight: 300;
-      font-size: 1.5rem;
-      margin: 0 0 20px 0;
-      color: #ddd;
-    }
-
-    p {
-      max-width: 480px;
-      font-weight: 300;
-      font-size: 1.1rem;
-      line-height: 1.5;
-      margin: 0 0 30px 0;
-      color: #ccc;
-    }
-
-    a.insta-link {
-      display: inline-block;
-      background: #f8a100;
-      color: #1e1e1e;
-      font-weight: 600;
-      text-decoration: none;
-      padding: 12px 30px;
-      border-radius: 30px;
-      font-size: 1.1rem;
-      box-shadow: 0 5px 10px rgba(248, 161, 0, 0.4);
-      transition: background 0.3s ease, color 0.3s ease;
-    }
-
-    a.insta-link:hover,
-    a.insta-link:focus {
-      background: #e37c00;
-      color: white;
-      box-shadow: 0 7px 15px rgba(227, 124, 0, 0.7);
-    }
-
-    footer {
-      margin-top: auto;
-      padding: 15px 10px;
-      font-size: 0.9rem;
-      color: #777;
-    }
-
-    footer a {
-      color: #f8a100;
-      text-decoration: none;
-      font-weight: 500;
-    }
-
-    footer a:hover,
-    footer a:focus {
-      text-decoration: underline;
-    }
-
-    @media (max-width: 480px) {
-      h1 {
-        font-size: 2.2rem;
-      }
-      h2 {
-        font-size: 1.2rem;
-      }
-      p {
-        font-size: 1rem;
-      }
-      img.logo {
-        width: 140px;
-        height: 140px;
-      }
-      a.insta-link {
-        padding: 10px 25px;
-        font-size: 1rem;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="assets/css/new-main.css" />
+  <link rel="stylesheet" href="assets/css/contact-form.css" />
 </head>
 <body>
-  <img
-    class="logo"
-    src="images/logo.jpg" alt="Dough & Beats Logo"
-  />
-    <h1>DOUGH & BEATS</h1>
-    <h2>Streetside Panuozzo. Rhythm & Soul.</h2>
+  <header>
+    <div class="container">
+      <nav>
+        <div class="logo">Dough & Beats</div>
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Menu</a></li>
+          <li><a href="#" id="contact-us-button">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
 
-    <p><strong>Dough & Beats</strong> is an independent mobile food business based in London, serving up handcrafted, contemporary Neapolitan-style pizzas with a twist — pizza sandwiches baked fresh in our portable ovens.</p>
+  <main>
+    <section class="hero">
+      <div class="container">
+        <h1>Streetside Panuozzo. Rhythm & Soul.</h1>
+        <p>Handcrafted, contemporary Neapolitan-style pizzas with a twist.</p>
+        <a href="#" class="cta-button">Book Us</a>
+      </div>
+    </section>
 
-    <p>Our dough is made daily, fermented for flavour, and cooked until crisp on the outside and airy on the inside. Each sandwich is filled with high-quality ingredients including Italian meats, fresh vegetables, and artisan cheeses — always bold, always flavourful.</p>
-
-    <p>We bring the energy of vibrant street food culture to private events, festivals, and local markets across London.</p>
-
-    <p>Founded by long-time friends <strong>Nits and Dhru</strong>, Dough & Beats is committed to quality, creativity, and good vibes. Whether you're planning a wedding, a company party, or a community fair, we’ll bring the fire — in both food and music.</p>
-
-    <p><strong>Fully insured. Registered food business. Based in London.</strong></p>
-	  <a
-    class="insta-link"
-    href="https://www.instagram.com/dough_beats/"
-    target="_blank"
-    rel="noopener noreferrer"
-    >Follow us @dough_beats</a
-  >
-
-
-
-
-
-
+    <section class="features">
+      <div class="container">
+        <div class="feature-card">
+          <h3>Our Story</h3>
+          <p>Dough & Beats is an independent mobile food business based in London, founded by long-time friends Nits and Dhru. We are committed to quality, creativity, and good vibes.</p>
+        </div>
+        <div class="feature-card">
+          <h3>Our Food</h3>
+          <p>Our dough is made daily, fermented for flavour, and cooked until crisp on the outside and airy on the inside. Each sandwich is filled with high-quality ingredients including Italian meats, fresh vegetables, and artisan cheeses.</p>
+        </div>
+        <div class="feature-card">
+          <h3>Our Vibe</h3>
+          <p>We bring the energy of vibrant street food culture to private events, festivals, and local markets across London. We’ll bring the fire — in both food and music.</p>
+        </div>
+      </div>
+    </section>
+  </main>
 
   <footer>
-    Contact us: <a href="mailto:hello@doughandbeats.co.uk">hello@doughandbeats.co.uk</a> |   Visit us: <a href="https://www.doughandbeats.co.uk" target="_blank">www.doughandbeats.co.uk</a>
+    <div class="container">
+      <p>&copy; 2025 Dough & Beats. All rights reserved.</p>
+    </div>
   </footer>
+
+  <div id="contact-popup" class="popup">
+    <div class="popup-content">
+      <span class="close-button">&times;</span>
+      <h2>Contact Us</h2>
+      <form id="contact-form" action="https://formsubmit.co/hello@doughandbeats.co.uk" method="POST">
+        <input type="hidden" name="_next" value="/thanks.html">
+        <input type="hidden" name="_captcha" value="true">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" required>
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required>
+        <label for="message">Message</label>
+        <textarea id="message" name="message" required></textarea>
+        <!-- Replace YOUR_SITE_KEY with your actual Google reCAPTCHA site key -->
+        <div class="g-recaptcha" data-sitekey="YOUR_SITE_KEY"></div>
+        <button type="submit">Send</button>
+      </form>
+      <div id="thank-you-message" style="display: none;">
+        <h3>Thank you for your message!</h3>
+        <p>We'll get back to you soon.</p>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+  <script>
+    const contactPopup = document.getElementById('contact-popup');
+    const contactUsButton = document.getElementById('contact-us-button');
+    const closeButton = document.querySelector('.close-button');
+    const contactForm = document.getElementById('contact-form');
+    const thankYouMessage = document.getElementById('thank-you-message');
+
+    contactUsButton.onclick = () => {
+      contactPopup.style.display = 'flex';
+    }
+
+    closeButton.onclick = () => {
+      contactPopup.style.display = 'none';
+      contactForm.style.display = 'flex';
+      thankYouMessage.style.display = 'none';
+    }
+
+    window.onclick = (event) => {
+      if (event.target == contactPopup) {
+        contactPopup.style.display = 'none';
+        contactForm.style.display = 'flex';
+        thankYouMessage.style.display = 'none';
+      }
+    }
+
+    contactForm.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const formData = new FormData(contactForm);
+      fetch(contactForm.action, {
+        method: 'POST',
+        body: formData,
+        headers: {
+          'Accept': 'application/json'
+        }
+      }).then(response => {
+        if (response.ok) {
+          contactForm.style.display = 'none';
+          thankYouMessage.style.display = 'block';
+        } else {
+          alert('Oops! There was a problem submitting your form.');
+        }
+      }).catch(error => {
+        alert('Oops! There was a problem submitting your form.');
+      });
+    });
+  </script>
 </body>
 </html>
