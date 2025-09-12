@@ -1,9 +1,14 @@
 import { Button } from "@/components/ui/button";
 import { Instagram as InstagramIcon, ExternalLink } from "lucide-react";
 import feed from '@/data/instagram-feed.json';
+import { useState } from 'react';
 
 const Instagram = () => {
-  const posts = feed.posts.slice(0, 12); // Limit to 12 posts for a cleaner grid
+  const [visibleCount, setVisibleCount] = useState(16);
+  const allPosts = feed.posts;
+  const posts = allPosts.slice(0, visibleCount);
+  const canLoadMore = visibleCount < allPosts.length;
+  const loadMore = () => setVisibleCount(c => Math.min(c + 16, allPosts.length));
 
   return (
     <div className="bg-brand-cream pt-20">
@@ -13,7 +18,7 @@ const Instagram = () => {
           <div className="flex items-center justify-center gap-4 mb-4">
             <InstagramIcon className="h-12 w-12 text-brand-tomato" />
             <h1 className="text-5xl md:text-7xl font-extrabold text-brand-tomato tracking-tighter">
-              Our Journey
+              Instagram
             </h1>
           </div>
           <p className="mt-4 text-xl md:text-2xl text-brand-black/80 max-w-3xl mx-auto">
@@ -37,7 +42,33 @@ const Instagram = () => {
         </div>
       </header>
 
-      {/* Instagram Gallery */}
+      {/* LightWidget Embedded Feed */}
+      <section className="pt-16 md:pt-24">
+        <div className="container mx-auto px-4 max-w-5xl">
+          <div className="mb-10 text-center">
+            <h2 className="text-3xl md:text-4xl font-extrabold text-brand-tomato tracking-tight mb-4">
+              Live Instagram Feed
+            </h2>
+            <p className="text-brand-black/70 max-w-2xl mx-auto">
+              This embedded feed is powered by LightWidget. Scroll for more, or browse our curated highlights below.
+            </p>
+          </div>
+          {/* LightWidget WIDGET */}
+          <div className="rounded-xl overflow-hidden shadow-lg ring-1 ring-black/5 bg-white p-2 md:p-4">
+            <script src="https://cdn.lightwidget.com/widgets/lightwidget.js" defer></script>
+            <iframe 
+              src="//lightwidget.com/widgets/6244b622a6095a5db4c66e73e0fb1e5d.html" 
+              scrolling="no" 
+              allowTransparency
+              className="lightwidget-widget w-full" 
+              style={{ border: 0, overflow: 'hidden' }}
+              title="Instagram embedded feed"
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* Instagram Gallery (local JSON based) */}
       <main className="py-20 md:py-28">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
@@ -62,6 +93,17 @@ const Instagram = () => {
               </a>
             ))}
           </div>
+          {canLoadMore && (
+            <div className="mt-12 text-center">
+              <Button
+                size="lg"
+                onClick={loadMore}
+                className="bg-brand-tomato hover:bg-brand-tomato/90 text-white font-semibold rounded-full px-8 py-6"
+              >
+                Load More Photos
+              </Button>
+            </div>
+          )}
         </div>
       </main>
 
