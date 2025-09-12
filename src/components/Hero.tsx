@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, MapPin } from "lucide-react";
 import { Link } from "react-router-dom";
-import heroPanuozzo from "@/assets/hero-panuozzo.jpg";
+// Replaced background image with local public asset (add file to public/images/hero-oven.jpg)
 import { cn } from "@/lib/utils";
 
 const Hero = () => {
@@ -18,13 +18,16 @@ const Hero = () => {
 
   return (
     <section className="relative min-h-screen flex items-center justify-center bg-brand-cream overflow-hidden" role="banner">
-      {/* Background Image with Overlay */}
-      <div className="absolute inset-0 z-0 opacity-10">
-        <img 
-          src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?q=80&w=2070&auto=format&fit=crop" 
-          alt="Abstract pattern of green and white" 
-          className="w-full h-full object-cover"
+      {/* Background Image with subtle overlay */}
+      <div className="absolute inset-0 z-0">
+        <img
+          src="/images/hero-oven.jpg"
+          alt="Wood-fired pizza cooking inside the portable oven"
+          className="w-full h-full object-cover opacity-60 mix-blend-normal"
+          loading="eager"
+          decoding="async"
         />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/10 to-brand-cream/40" />
       </div>
 
       {/* Content */}
