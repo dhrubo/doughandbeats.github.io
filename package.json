@@ -7,6 +7,8 @@
     "dev": "vite",
     "build": "vite build",
     "build:dev": "vite build --mode development",
+    "deploy": "./deploy.sh",
+    "deploy:static": "npm run build && cp -r dist/assets/* assets/ && cp -r public/images . && cp public/404.html .",
     "lint": "eslint .",
     "preview": "vite preview",
     "fetch:instagram": "node scripts/fetch-instagram.js"

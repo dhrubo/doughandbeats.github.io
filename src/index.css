@@ -233,4 +233,65 @@ All colors MUST be HSL.
       transform: translateY(-10px);
     }
   }
+
+  /* Responsive Background Image Scaling - Static Site Compatible */
+  .hero-background-responsive {
+    transition: transform 0.3s ease-out, object-position 0.3s ease-out;
+    object-position: center center;
+    transform: scale(1);
+  }
+
+  /* Mobile devices */
+  @media (max-width: 640px) {
+    .hero-background-responsive {
+      object-position: center center;
+      transform: scale(1.1);
+    }
+  }
+
+  /* Tablet devices */
+  @media (min-width: 641px) and (max-width: 1024px) {
+    .hero-background-responsive {
+      object-position: center center;
+      transform: scale(1.05);
+    }
+  }
+
+  /* Desktop devices */
+  @media (min-width: 1025px) {
+    .hero-background-responsive {
+      object-position: center center;
+      transform: scale(1);
+    }
+  }
+
+  /* Large desktop screens */
+  @media (min-width: 1400px) {
+    .hero-background-responsive {
+      object-position: center 30%;
+      transform: scale(0.95);
+    }
+  }
+
+  /* Orientation-based adjustments */
+  @media (orientation: portrait) and (max-height: 800px) {
+    .hero-background-responsive {
+      object-position: center 40%;
+    }
+  }
+
+  @media (orientation: landscape) and (max-height: 600px) {
+    .hero-background-responsive {
+      object-position: center center;
+      transform: scale(1.2);
+    }
+  }
+
+  /* Fallback for older browsers */
+  @supports not (object-position: center) {
+    .hero-background-responsive {
+      background-size: cover;
+      background-position: center center;
+    }
+  }
 }

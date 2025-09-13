@@ -1,0 +1,128 @@
+{
+  "index": {
+    "meta": {
+      "title": "Dough & Beats | Panuozzo Street Food London",
+      "description": "Handcrafted Neapolitan-style panuozzo sandwiches across London. Catering, street food and events." 
+    },
+    "sections": [
+      {
+        "type": "hero",
+        "title": "DOUGH & BEATS",
+        "tagline": "Streetside Panuozzo. Rhythm & Soul.",
+        "subcopy": "A London popup serving wood-fired Italian-style pizza sandwiches (panuozzo). Baked fresh on-site, we combine classic Italian ingredients with our own bold flavours—bringing heat, rhythm, and soul to markets, private events, and collabs.",
+        "primaryCta": { "label": "Book an Event", "to": "/contact" },
+        "secondaryCta": { "label": "Learn More", "to": "/about" },
+        "image": "/images/hero.jpeg",
+        "imageAlt": "Wood-fired pizza cooking inside the portable oven"
+      },
+      {
+        "type": "features",
+        "items": [
+          {
+            "icon": "ChefHat",
+            "title": "Authentic Panuozzo",
+            "text": "Made with our signature 24-hour fermented dough, baked to perfection for a crispy crust and a soft, airy inside."
+          },
+            {
+            "icon": "MapPin",
+            "title": "Find Us In London",
+            "text": "We pop up at various markets, festivals, and private events. Follow our journey on Instagram to see where we are next!"
+          },
+          {
+            "icon": "PartyPopper",
+            "title": "Catering & Events",
+            "text": "Want to bring Dough & Beats to your party? We cater for private events, weddings, and corporate functions."
+          }
+        ]
+      },
+      {
+        "type": "cta",
+        "heading": "Got an Event?",
+        "body": "Let us bring the flavour and the beats to you. Get in touch to discuss your event.",
+        "cta": { "label": "Book Us Now", "to": "/contact" }
+      }
+    ]
+  },
+  "about": {
+    "meta": {
+      "title": "About | Dough & Beats",
+      "description": "Our story: bringing authentic panuozzo and good vibes to London events." 
+        },
+    "header": {
+      "title": "Our Story",
+      "subtitle": "Two friends turning a shared love for flavour and music into a fresh London street food experience."
+    },
+    "story": {
+      "subheading": "Bringing something fresh to London’s street food scene.",
+      "paras": [
+        "Dough & Beats is the creation of two friends, Nits and Dhru, passionate about bringing something fresh to London’s street food scene.",
+        "We specialise in Italian-style pizza sandwiches—panuozzo—made with 24-hour fermented dough, baked in wood-fired ovens. Every bite combines classic Italian ingredients with our own bold flavours, creating food that’s crisp, airy, and unforgettable.",
+        "From intimate weddings to bustling festivals, we bring restaurant-quality catering with energy, music, and good vibes. For us, it’s never just about what’s on the plate—it’s about creating a moment people remember."
+      ],
+      "image": "/images/founders.jpg",
+      "imageAlt": "The founders of Dough & Beats"
+    },
+    "cta": {
+      "heading": "Want Us At Your Event?",
+      "body": "We'd love to be a part of your story. Get in touch to see how we can cater for you.",
+      "cta": { "label": "Enquire Now", "to": "/contact" }
+    }
+  },
+  "contact": {
+    "meta": {
+      "title": "Contact | Dough & Beats",
+      "description": "Book Dough & Beats for weddings, corporate and private events across London." 
+    },
+    "header": {
+      "title": "Contact Us",
+      "subtitle": "Ready to bring authentic Italian street food to your event? Fill out the form below."
+    },
+    "form": {
+      "fields": {
+        "name": { "label": "Full Name", "placeholder": "John Doe" },
+        "email": { "label": "Email Address", "placeholder": "you@example.com" },
+        "phone": { "label": "Phone Number", "placeholder": "07123 456789" },
+        "guestCount": { "label": "Number of Guests", "placeholder": "e.g., 50" },
+        "eventType": { "label": "Type of Event", "placeholder": "Select an event type" },
+        "message": { "label": "Your Message", "placeholder": "Tell us a bit about your event, including the date, location, and any special requests." }
+      },
+      "eventTypes": [
+        "Private Party",
+        "Wedding",
+        "Corporate Event",
+        "Festival / Market",
+        "Other"
+      ],
+      "submit": "Send Enquiry",
+      "submitting": "Sending...",
+      "successTitle": "Thank You!",
+      "successBody": "Your message has been sent. We'll be in touch shortly!",
+      "sendAnother": "Send Another Message",
+      "emailSubject": "New Event Enquiry from Dough & Beats Website!",
+      "errors": {
+        "generic": "Something went wrong. Please try again.",
+        "network": "An error occurred. Please check your connection and try again."
+      }
+    },
+    "emailCta": {
+      "heading": "Prefer to email us directly?",
+      "email": "hello@doughandbeats.co.uk"
+    }
+  },
+  "instagram": {
+    "meta": {
+      "title": "Instagram | Dough & Beats",
+      "description": "Follow our journey and latest panuozzo creations on Instagram." 
+    },
+    "header": {
+      "title": "Instagram",
+      "subtitle": "See our latest creations, behind-the-scenes moments, and event highlights on Instagram.",
+      "cta": { "label": "Follow @dough_beats", "href": "https://www.instagram.com/dough_beats/" }
+    },
+    "cta": {
+      "heading": "Want to see more?",
+      "body": "Head over to our Instagram for the full gallery and daily updates.",
+      "cta": { "label": "Visit Our Instagram", "href": "https://www.instagram.com/dough_beats/" }
+    }
+  }
+}
