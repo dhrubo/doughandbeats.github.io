@@ -32,9 +32,10 @@ const Navigation = () => {
     <nav 
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300 font-sans",
-        isScrolled || !isHomePage 
-          ? "bg-white/90 backdrop-blur-sm border-b border-gray-200" 
-          : "bg-transparent"
+        // Use brand cream everywhere for consistency
+        isScrolled
+          ? "bg-brand-cream/95 backdrop-blur-sm border-b border-gray-200"
+          : "bg-brand-cream border-b border-gray-200"
       )}
     >
       <div className="container mx-auto px-4">
@@ -112,7 +113,7 @@ const Navigation = () => {
         {/* Mobile Navigation */}
         {isOpen && (
           <div className="md:hidden" id="mobile-menu">
-            <div className="pt-4 pb-3 space-y-2 bg-white rounded-lg mt-2 shadow-xl">
+            <div className="pt-4 pb-3 space-y-2 bg-brand-cream rounded-lg mt-2 shadow-xl border border-gray-200">
               {navItems.map((item) => (
                 <NavLink
                   key={item.to}

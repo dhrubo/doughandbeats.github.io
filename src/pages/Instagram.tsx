@@ -1,14 +1,39 @@
 import { Button } from "@/components/ui/button";
 import { Instagram as InstagramIcon, ExternalLink } from "lucide-react";
 import feed from '@/data/instagram-feed.json';
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 const Instagram = () => {
-  const [visibleCount, setVisibleCount] = useState(16);
+  const [visibleCount, setVisibleCount] = useState(24);
+  const widgetRef = useRef<HTMLDivElement | null>(null);
   const allPosts = feed.posts;
   const posts = allPosts.slice(0, visibleCount);
   const canLoadMore = visibleCount < allPosts.length;
-  const loadMore = () => setVisibleCount(c => Math.min(c + 16, allPosts.length));
+  const loadMore = () => setVisibleCount(c => Math.min(c + 24, allPosts.length));
+
+  // Dynamically compute tile size so exactly 3 rows fit without extra white space.
+  useEffect(() => {
+    const el = widgetRef.current;
+    if (!el) return;
+    const resize = () => {
+      const width = el.clientWidth; // LightWidget lays out a square grid with some internal gap.
+      const gap = 8; // assumption; adjust if widget uses different gap.
+      // Strategy: choose tile size based on width breakpoints; ensure height fits viewport minus header space.
+      const viewportH = window.innerHeight;
+      // Reserve approx header + padding space (navigation + page header) ~ 260px (tunable).
+      const available = Math.max(viewportH - 260, 300);
+      // Proposed tile size = min( (available - gaps) / 3 , width / 3 ) for 3 columns typical.
+      const tileByHeight = (available - gap * 2) / 3;
+      const columns = width > 900 ? 3 : (width > 600 ? 3 : 2); // LightWidget often responsive; assume 3 columns desktop.
+      const tileByWidth = (width - gap * (columns - 1)) / columns;
+      const tile = Math.floor(Math.min(tileByHeight, tileByWidth));
+      el.style.setProperty('--ig-tile', tile + 'px');
+      el.style.setProperty('--ig-gap', gap + 'px');
+    };
+    resize();
+    window.addEventListener('resize', resize);
+    return () => window.removeEventListener('resize', resize);
+  }, []);
 
   return (
     <div className="bg-brand-cream pt-20">
@@ -42,35 +67,35 @@ const Instagram = () => {
         </div>
       </header>
 
-      {/* LightWidget Embedded Feed */}
-      <section className="pt-16 md:pt-24">
+      {/* Embedded Feed (LightWidget) */}
+      <section className="pt-12 md:pt-20">
         <div className="container mx-auto px-4 max-w-5xl">
-          <div className="mb-10 text-center">
-            <h2 className="text-3xl md:text-4xl font-extrabold text-brand-tomato tracking-tight mb-4">
-              Live Instagram Feed
-            </h2>
-            <p className="text-brand-black/70 max-w-2xl mx-auto">
-              This embedded feed is powered by LightWidget. Scroll for more, or browse our curated highlights below.
-            </p>
-          </div>
-          {/* LightWidget WIDGET */}
-          <div className="rounded-xl overflow-hidden shadow-lg ring-1 ring-black/5 bg-white p-2 md:p-4">
+          <div
+            ref={widgetRef}
+            className="rounded-xl overflow-hidden shadow-lg ring-1 ring-black/5 bg-white p-2 md:p-4 flex flex-col"
+            style={{
+              // height = (tileSize * rows) + (gap * (rows-1)) + padding
+              // We'll compute and set via effect; fallback uses viewport calc.
+              height: 'calc(var(--ig-tile, 0px) * 3 + var(--ig-gap, 8px) * 2)'
+            }}
+          >
             <script src="https://cdn.lightwidget.com/widgets/lightwidget.js" defer></script>
-            <iframe 
-              src="//lightwidget.com/widgets/6244b622a6095a5db4c66e73e0fb1e5d.html" 
-              scrolling="no" 
+            <iframe
+              src="//lightwidget.com/widgets/6244b622a6095a5db4c66e73e0fb1e5d.html"
+              scrolling="no"
               allowTransparency
-              className="lightwidget-widget w-full" 
-              style={{ border: 0, overflow: 'hidden' }}
+              className="lightwidget-widget w-full flex-1"
+              style={{ border: 0, overflow: 'hidden', height: '100%' }}
               title="Instagram embedded feed"
             />
           </div>
         </div>
       </section>
 
+
       {/* Instagram Gallery (local JSON based) */}
       <main className="py-20 md:py-28">
-        <div className="container mx-auto px-4">
+  <div className="container mx-auto px-4">
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             {posts.map((post) => (
               <a 
@@ -93,7 +118,7 @@ const Instagram = () => {
               </a>
             ))}
           </div>
-          {canLoadMore && (
+          {canLoadMore && allPosts.length > 0 && (
             <div className="mt-12 text-center">
               <Button
                 size="lg"

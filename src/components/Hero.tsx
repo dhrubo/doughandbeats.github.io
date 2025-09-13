@@ -21,13 +21,22 @@ const Hero = () => {
       {/* Background Image with subtle overlay */}
       <div className="absolute inset-0 z-0">
         <img
-          src="/images/hero-oven.jpg"
+          src="/images/hero.jpeg"
           alt="Wood-fired pizza cooking inside the portable oven"
-          className="w-full h-full object-cover opacity-60 mix-blend-normal"
+          className="w-full h-full object-cover opacity-60"
           loading="eager"
           decoding="async"
         />
+        {/* Existing dark-to-light gradient */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/10 to-brand-cream/40" />
+        {/* New white light filter: subtle radial glow + soft veil */}
+        <div className="absolute inset-0 pointer-events-none mix-blend-screen opacity-70">
+          <div className="w-full h-full" style={{
+            background: "radial-gradient(circle at 50% 45%, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.65) 25%, rgba(255,255,255,0.35) 55%, rgba(255,255,255,0.08) 75%, rgba(255,255,255,0) 100%)"
+          }} />
+        </div>
+        {/* Soft overall white film for clarity */}
+        <div className="absolute inset-0 bg-white/10 backdrop-blur-[1px]" />
       </div>
 
       {/* Content */}
