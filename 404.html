@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dough & Beats</title>
+    <meta name="robots" content="noindex" />
+    <link rel="stylesheet" href="/assets/app/index-BrFVz-Hu.css" />
+    <script>
+      // Redirect all 404s to root for SPA routing, preserving path in hash
+      (function() {
+        var redirect = sessionStorage.getItem('spa-redirect');
+        if (!redirect) {
+          var path = window.location.pathname + window.location.search + window.location.hash;
+          sessionStorage.setItem('spa-redirect', path);
+          window.location.replace('/');
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root">Redirecting...</div>
+    <script type="module" src="/assets/app/index-tHCkq1Iu.js"></script>
+    <script>
+      // After app loads, consume and clear stored path
+      (function() {
+        var stored = sessionStorage.getItem('spa-redirect');
+        if (stored) {
+          sessionStorage.removeItem('spa-redirect');
+          if (stored !== '/' && !window.location.pathname.includes(stored)) {
+            // push the path for client router
+            history.replaceState(null, '', stored);
+          }
+        }
+      })();
+    </script>
+  </body>
+</html>
