@@ -9,8 +9,7 @@
     "build:clean": "rm -rf dist && vite build",
     "preview": "vite preview --port 4173 --host",
     "preview:dist": "npm run build:clean && npm run preview",
-    "deploy": "npm run build:clean && ./deploy.sh",
-    "deploy:gh-pages": "npm run build:clean && cp -f dist/index.html . && mkdir -p assets && cp -r dist/assets/* assets/ && cp -r public/images . && cp public/404.html .",
+    "deploy": "npm run build:clean && echo 'Built successfully! Push to GitHub to deploy via Actions.'",
     "lint": "eslint .",
     "fetch:instagram": "node scripts/fetch-instagram.js"
   },

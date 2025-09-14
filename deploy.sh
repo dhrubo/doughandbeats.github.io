@@ -1,33 +1,22 @@
 #!/bin/bash
-# Deploy script for GitHub Pages
+# Deploy script for GitHub Pages (using GitHub Actions)
 
-echo "🔨 Building the project..."
-npm run build
+echo "🔨 Building the project with clean build..."
+npm run build:clean
 
 if [ $? -ne 0 ]; then
     echo "❌ Build failed! Please fix the errors and try again."
     exit 1
 fi
 
-echo "📦 Copying assets for GitHub Pages deployment..."
-
-# Backup current index.html (development version)
-cp index.html index.html.dev
-
-# Copy built index.html to root (this has the correct asset references)
-cp -f dist/index.html .
-
-# Copy built assets to root assets directory
-mkdir -p assets
-cp dist/assets/index-*.js dist/assets/index-*.css assets/ 2>/dev/null || echo "No new assets to copy"
-
-# Ensure images are available
-cp -r public/images . 2>/dev/null || echo "Images already in place"
-
-# Copy 404.html for SPA routing
-cp public/404.html . 2>/dev/null || echo "404.html already in place"
-
-echo "✅ Files ready for GitHub Pages deployment!"
+echo "✅ Build completed successfully!"
+echo "📋 Built files are in the dist/ directory"
+echo "🚀 GitHub Actions will automatically deploy when you push to main branch"
+echo ""
+echo "To manually deploy, commit and push your changes:"
+echo "  git add ."
+echo "  git commit -m 'Update build'"
+echo "  git push origin main"
 echo "✅ Production index.html copied to root"
 echo "✅ Built assets copied to /assets/"
 echo "✅ Images available at /images/"
