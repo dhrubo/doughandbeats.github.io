@@ -2,7 +2,7 @@
   "index": {
     "meta": {
       "title": "Dough & Beats | Panuozzo Street Food London",
-      "description": "Handcrafted Neapolitan-style panuozzo sandwiches across London. Catering, street food and events." 
+      "description": "Handcrafted Neapolitan style panuozzo sandwiches across London. Catering, street food and events." 
     },
     "sections": [
       {
@@ -21,7 +21,7 @@
           {
             "icon": "ChefHat",
             "title": "Authentic Panuozzo",
-            "text": "Made with our signature 24-hour fermented dough, baked to perfection for a crispy crust and a soft, airy inside."
+            "text": "Made with our signature 24 hour fermented dough, baked to perfection for a crispy crust and a soft, airy inside."
           },
             {
             "icon": "MapPin",
@@ -53,9 +53,8 @@
       "subtitle": "Two friends turning a shared love for flavour and music into a fresh London street food experience."
     },
     "story": {
-      "subheading": "Bringing something fresh to London’s street food scene.",
+      "subheading": "Bringing something fresh to London's street food scene.",
       "paras": [
-        "Dough & Beats is the creation of two friends, Nits and Dhru, passionate about bringing something fresh to London’s street food scene.",
         "We specialise in Italian style pizza sandwiches panuozzo made with 24-hour fermented dough, baked in wood-fired ovens. Every bite combines classic Italian ingredients with our own bold flavours, creating food that’s crisp, airy, and unforgettable.",
         "From intimate weddings to bustling festivals, we bring restaurant quality catering with energy, music, and good vibes. For us, it’s never just about what’s on the plate it’s about creating a moment people remember."
       ],
