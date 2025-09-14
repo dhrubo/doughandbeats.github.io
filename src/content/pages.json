@@ -9,7 +9,7 @@
         "type": "hero",
         "title": "DOUGH & BEATS",
         "tagline": "Streetside Panuozzo. Rhythm & Soul.",
-        "subcopy": "A London popup serving wood-fired Italian-style pizza sandwiches (panuozzo). Baked fresh on-site, we combine classic Italian ingredients with our own bold flavours—bringing heat, rhythm, and soul to markets, private events, and collabs.",
+        "subcopy": "A London popup serving wood-fired Italian-style neapolitan sandwiches (panuozzo). Baked fresh on-site, we combine classic Italian ingredients with our own bold flavours bringing heat, rhythm, and soul to markets, private events, and collabs.",
         "primaryCta": { "label": "Book an Event", "to": "/contact" },
         "secondaryCta": { "label": "Learn More", "to": "/about" },
         "image": "/images/hero.jpeg",
@@ -56,8 +56,8 @@
       "subheading": "Bringing something fresh to London’s street food scene.",
       "paras": [
         "Dough & Beats is the creation of two friends, Nits and Dhru, passionate about bringing something fresh to London’s street food scene.",
-        "We specialise in Italian-style pizza sandwiches—panuozzo—made with 24-hour fermented dough, baked in wood-fired ovens. Every bite combines classic Italian ingredients with our own bold flavours, creating food that’s crisp, airy, and unforgettable.",
-        "From intimate weddings to bustling festivals, we bring restaurant-quality catering with energy, music, and good vibes. For us, it’s never just about what’s on the plate—it’s about creating a moment people remember."
+        "We specialise in Italian style pizza sandwiches panuozzo made with 24-hour fermented dough, baked in wood-fired ovens. Every bite combines classic Italian ingredients with our own bold flavours, creating food that’s crisp, airy, and unforgettable.",
+        "From intimate weddings to bustling festivals, we bring restaurant quality catering with energy, music, and good vibes. For us, it’s never just about what’s on the plate it’s about creating a moment people remember."
       ],
       "image": "/images/founders.jpg",
       "imageAlt": "The founders of Dough & Beats"
