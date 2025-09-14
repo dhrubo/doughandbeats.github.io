@@ -6,12 +6,12 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "build:dev": "vite build --mode development",
-    "deploy": "./deploy.sh",
-    "deploy:gh-pages": "npm run build && cp index.html index.html.dev && cp -f dist/index.html . && mkdir -p assets && cp dist/assets/index-*.js dist/assets/index-*.css assets/ && cp -r public/images . && cp public/404.html .",
-    "dev:restore": "cp index.html.dev index.html 2>/dev/null || echo 'No backup to restore'",
+    "build:clean": "rm -rf dist && vite build",
+    "preview": "vite preview --port 4173 --host",
+    "preview:dist": "npm run build:clean && npm run preview",
+    "deploy": "npm run build:clean && ./deploy.sh",
+    "deploy:gh-pages": "npm run build:clean && cp -f dist/index.html . && mkdir -p assets && cp -r dist/assets/* assets/ && cp -r public/images . && cp public/404.html .",
     "lint": "eslint .",
-    "preview": "vite preview",
     "fetch:instagram": "node scripts/fetch-instagram.js"
   },
   "dependencies": {

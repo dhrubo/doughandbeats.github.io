@@ -9,11 +9,11 @@
         "type": "hero",
         "title": "DOUGH & BEATS",
         "tagline": "Streetside Panuozzo. Rhythm & Soul.",
-        "subcopy": "A London popup serving wood-fired Italian-style neapolitan sandwiches (panuozzo). Baked fresh on-site, we combine classic Italian ingredients with our own bold flavours bringing heat, rhythm, and soul to markets, private events, and collabs.",
+        "subcopy": "A London popup serving Italian-style neapolitan sandwiches (panuozzo). Baked fresh on-site, we combine classic Italian ingredients with our own bold flavours bringing heat, rhythm, and soul to markets, private events, and collabs.",
         "primaryCta": { "label": "Book an Event", "to": "/contact" },
         "secondaryCta": { "label": "Learn More", "to": "/about" },
         "image": "/images/hero.jpeg",
-        "imageAlt": "Wood-fired pizza cooking inside the portable oven"
+        "imageAlt": " Gozney powered pizza cooking inside the portable oven"
       },
       {
         "type": "features",
@@ -55,7 +55,7 @@
     "story": {
       "subheading": "Bringing something fresh to London's street food scene.",
       "paras": [
-        "We specialise in Italian style pizza sandwiches panuozzo made with 24-hour fermented dough, baked in wood-fired ovens. Every bite combines classic Italian ingredients with our own bold flavours, creating food that’s crisp, airy, and unforgettable.",
+        "We specialise in Italian style pizza sandwiches panuozzo made with 24-hour fermented dough, baked in a Gozney ovens. Every bite combines classic Italian ingredients with our own bold flavours, creating food that’s crisp, airy, and unforgettable.",
         "From intimate weddings to bustling festivals, we bring restaurant quality catering with energy, music, and good vibes. For us, it’s never just about what’s on the plate it’s about creating a moment people remember."
       ],
       "image": "/images/founders.jpg",
