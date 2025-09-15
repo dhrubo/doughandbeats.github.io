@@ -1,73 +1,203 @@
-# Welcome to your Lovable project
+# Dough & Beats - Authentic Italian Street Food
 
-## Project info
+> Modern React website for Dough & Beats, featuring authentic Italian street food with a clean, responsive design.
 
-**URL**: https://lovable.dev/projects/fd54d0f2-d3f1-4557-99e0-bd3938cd0e27
+**Live Site**: [https://doughandbeats.github.io](https://doughandbeats.github.io)
 
-## How can I edit this code?
+## 🚀 Quick Start
 
-There are several ways of editing your application.
+### Prerequisites
+- Node.js 18+ and npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+- Git for version control
 
-**Use Lovable**
+### Local Development Setup
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/fd54d0f2-d3f1-4557-99e0-bd3938cd0e27) and start prompting.
+```bash
+# 1. Clone the repository
+git clone https://github.com/dhrubo/doughandbeats.github.io.git
+cd doughandbeats.github.io
 
-Changes made via Lovable will be committed automatically to this repo.
+# 2. Install dependencies
+npm install
 
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+# 3. Start development server
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+The development server will start at `http://localhost:8080` with hot reloading enabled.
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+### Available Scripts
 
-**Use GitHub Codespaces**
+| Command | Description |
+|---------|-------------|
+| `npm run dev` | Start development server at localhost:8080 |
+| `npm run build` | Build for production |
+| `npm run build:clean` | Clean build (removes dist/ first) |
+| `npm run preview` | Preview production build at localhost:4173 |
+| `npm run preview:dist` | Build and preview in one command |
+| `npm run lint` | Run ESLint code analysis |
+| `./test-build.sh` | Test build compatibility and verify setup |
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+## 🏗️ Build Process
 
-## What technologies are used for this project?
+### Local Build & Testing
 
-This project is built with:
+```bash
+# Clean build for production
+npm run build:clean
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+# Test the build locally
+npm run preview:dist
 
-## How can I deploy this project?
+# Verify build compatibility
+./test-build.sh
+```
 
-Simply open [Lovable](https://lovable.dev/projects/fd54d0f2-d3f1-4557-99e0-bd3938cd0e27) and click on Share -> Publish.
+The build process:
+- Transforms 1700+ TypeScript/React modules
+- Generates optimized bundles (~370KB JS, ~67KB CSS)
+- Creates production-ready assets in `dist/` directory
+- Ensures compatibility with GitHub Pages deployment
 
-## Can I connect a custom domain to my Lovable project?
+## 🚀 GitHub Pages Deployment
 
-Yes, you can!
+This site is automatically deployed to GitHub Pages using GitHub Actions.
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+### Automatic Deployment
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+Every push to the `main` branch triggers automatic deployment:
+
+```bash
+# Make your changes
+git add .
+git commit -m "Your descriptive commit message"
+git push origin main
+```
+
+The GitHub Actions workflow will:
+1. Install dependencies with `npm ci`
+2. Build the site with `npm run build:clean`
+3. Deploy the `dist/` directory to GitHub Pages
+4. Make the site live at `https://doughandbeats.github.io`
+
+### Manual Deployment Verification
+
+```bash
+# 1. Test your build locally first
+npm run build:clean
+npm run preview
+
+# 2. Run compatibility tests
+./test-build.sh
+
+# 3. If tests pass, deploy
+git add .
+git commit -m "Update: describe your changes"
+git push origin main
+```
+
+### GitHub Actions Workflow
+
+The deployment workflow (`.github/workflows/deploy.yml`) handles:
+- ✅ Clean builds with cache optimization  
+- ✅ Asset optimization and bundling
+- ✅ Automatic GitHub Pages deployment
+- ✅ SPA routing support with 404.html
+- ✅ Custom domain support via CNAME
+
+## 🛠️ Technology Stack
+
+| Technology | Purpose |
+|------------|---------|
+| **React 18** | UI framework with modern hooks |
+| **TypeScript** | Type-safe development |
+| **Vite** | Fast build tool and dev server |
+| **Tailwind CSS** | Utility-first CSS framework |
+| **shadcn/ui** | Accessible UI component library |
+| **React Router** | Client-side routing |
+| **Lucide React** | Icon library |
+| **GitHub Actions** | CI/CD pipeline |
+| **GitHub Pages** | Static site hosting |
+
+## 📁 Project Structure
+
+```
+├── src/
+│   ├── components/        # Reusable UI components
+│   ├── pages/            # Route-based page components
+│   ├── lib/              # Utility functions
+│   └── main.tsx          # Application entry point
+├── public/               # Static assets
+├── dist/                 # Production build output
+├── .github/workflows/    # GitHub Actions config
+├── vite.config.ts        # Vite configuration
+└── package.json          # Dependencies and scripts
+```
+
+## 🔧 Development Guidelines
+
+### Making Changes
+
+1. **Start development server**: `npm run dev`
+2. **Make your changes** in the `src/` directory
+3. **Test locally**: Visit `http://localhost:8080`
+4. **Build and test**: `npm run preview:dist`
+5. **Verify compatibility**: `./test-build.sh`
+6. **Deploy**: `git push origin main`
+
+### Key Features
+
+- ✅ **Fully responsive design** for all device sizes
+- ✅ **Lightning-fast performance** with Vite optimization
+- ✅ **Accessibility-first** components with proper ARIA labels
+- ✅ **SEO optimized** with proper meta tags and structure
+- ✅ **Modern React patterns** with hooks and TypeScript
+- ✅ **Automatic deployments** via GitHub Actions
+
+## 🐛 Troubleshooting
+
+### Common Issues
+
+**Blank page on GitHub Pages:**
+- Run `./test-build.sh` to verify build compatibility
+- Check that `index.html` exists in project root
+- Ensure GitHub Pages is configured to use GitHub Actions
+
+**Build fails locally:**
+- Clear node modules: `rm -rf node_modules && npm install`
+- Clear Vite cache: `rm -rf .vite && npm run build:clean`
+
+**Development server issues:**
+- Check port 8080 isn't in use: `lsof -ti:8080`
+- Try different port: `npm run dev -- --port 8081`
+
+### Getting Help
+
+- Check the [GitHub Issues](https://github.com/dhrubo/doughandbeats.github.io/issues)
+- Review recent [GitHub Actions runs](https://github.com/dhrubo/doughandbeats.github.io/actions)
+- Test build compatibility with `./test-build.sh`
+
+## 📦 Build Output
+
+A successful build generates:
+
+```
+dist/
+├── index.html              # Main HTML file with asset references
+├── assets/
+│   ├── index-[hash].js     # ~370KB optimized JavaScript bundle
+│   └── index-[hash].css    # ~67KB optimized CSS bundle
+└── 404.html                # SPA routing fallback for GitHub Pages
+```
+
+**Important Notes:**
+- The `dist/` directory is auto-generated and should not be manually edited
+- Asset filenames include content hashes for cache busting
+- All assets are optimized and minified for production
+- The root `index.html` is the Vite entry point (do not delete!)
+
+---
+
+**Last Updated**: September 2025  
+**Node.js**: 18+ required  
+**Deployment**: Automatic via GitHub Actions
