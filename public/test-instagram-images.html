@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instagram Image URL Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .test-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin: 20px 0; }
+        .test-item { border: 1px solid #ddd; padding: 15px; border-radius: 8px; }
+        .test-item img { width: 100%; max-width: 200px; height: 200px; object-fit: cover; border-radius: 4px; }
+        .details { margin-top: 10px; font-size: 12px; color: #666; }
+        .status { font-weight: bold; margin-top: 5px; }
+        .pass { color: green; }
+        .fail { color: red; }
+        .loading { color: orange; }
+    </style>
+</head>
+<body>
+    <h1>Instagram Image URL Test</h1>
+    <p>Testing the image URL logic from the Instagram feed component.</p>
+    
+    <div id="test-results" class="test-grid"></div>
+
+    <script>
+        const getImageUrl = (post) => {
+            // For local images, use the path directly
+            if (post.local_image && post.local_image.trim() !== '') {
+                return `/${post.local_image}`;
+            }
+            // For base64 data URLs, use them directly
+            if (post.image_url && post.image_url.startsWith('data:')) {
+                return post.image_url;
+            }
+            // For external Instagram images, use them directly
+            if (post.thumbnail_url && post.thumbnail_url.startsWith('http')) {
+                return post.thumbnail_url;
+            }
+            if (post.image_url && post.image_url.startsWith('http')) {
+                return post.image_url;
+            }
+            // For local paths without the local_image flag, add leading slash
+            if (post.image_url && !post.image_url.startsWith('/')) {
+                return `/${post.image_url}`;
+            }
+            return post.image_url || post.thumbnail_url || '/images/placeholder.jpg';
+        };
+
+        // Load the actual Instagram data
+        fetch('/instagram.json')
+            .then(response => response.json())
+            .then(data => {
+                const container = document.getElementById('test-results');
+                
+                data.posts.slice(0, 6).forEach(post => {
+                    const imageUrl = getImageUrl(post);
+                    
+                    const testItem = document.createElement('div');
+                    testItem.className = 'test-item';
+                    
+                    testItem.innerHTML = `
+                        <h3>Post ${post.id}</h3>
+                        <img src="${imageUrl}" alt="${post.caption || 'Instagram post'}" />
+                        <div class="details">
+                            <p><strong>Caption:</strong> ${(post.caption || '').substring(0, 50)}...</p>
+                            <p><strong>Original image_url:</strong> ${post.image_url.substring(0, 50)}${post.image_url.length > 50 ? '...' : ''}</p>
+                            <p><strong>local_image:</strong> "${post.local_image || ''}"</p>
+                            <p><strong>Resolved URL:</strong> ${imageUrl.substring(0, 50)}${imageUrl.length > 50 ? '...' : ''}</p>
+                        </div>
+                        <div class="status loading" id="status-${post.id}">Loading...</div>
+                    `;
+                    
+                    const img = testItem.querySelector('img');
+                    const statusEl = testItem.querySelector('#status-' + post.id);
+                    
+                    img.onload = () => {
+                        statusEl.textContent = '✓ Image loaded successfully';
+                        statusEl.className = 'status pass';
+                    };
+                    
+                    img.onerror = () => {
+                        statusEl.textContent = '✗ Failed to load image';
+                        statusEl.className = 'status fail';
+                        img.style.backgroundColor = '#f0f0f0';
+                        img.style.border = '2px dashed #ccc';
+                        img.alt = 'Failed to load';
+                    };
+                    
+                    container.appendChild(testItem);
+                });
+            })
+            .catch(error => {
+                document.getElementById('test-results').innerHTML = 
+                    `<div style="color: red;">Failed to load Instagram data: ${error.message}</div>`;
+            });
+    </script>
+</body>
+</html>
