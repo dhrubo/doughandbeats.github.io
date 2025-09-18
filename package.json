@@ -5,13 +5,15 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
-    "build:clean": "rm -rf dist && vite build",
+    "build": "npm run fetch:instagram:api && vite build",
+    "build:clean": "rm -rf dist && npm run fetch:instagram:api && vite build",
     "preview": "vite preview --port 4173 --host",
     "preview:dist": "npm run build:clean && npm run preview",
     "deploy": "npm run build:clean && echo 'Built successfully! Push to GitHub to deploy via Actions.'",
     "lint": "eslint .",
-    "fetch:instagram": "node scripts/fetch-instagram.js"
+    "update:instagram": "node scripts/fetch-instagram.js",
+    "fetch:instagram": "node scripts/fetch-instagram.js",
+    "fetch:instagram:api": "node scripts/fetch-instagram-api.js"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",

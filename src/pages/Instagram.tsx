@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button } from "@/components/ui/button";
 import { Instagram as InstagramIcon, ExternalLink } from "lucide-react";
+import InstagramFeedSimple from "@/components/InstagramFeedSimple";
 
 const Instagram = () => {
 
@@ -36,12 +37,10 @@ const Instagram = () => {
         </div>
       </header>
 
+      {/* Instagram Feed */}
+      <InstagramFeedSimple />
 
-
-
-    
-    
-       {/* CTA Section */}
+      {/* CTA Section */}
        <section className="py-24 bg-brand-charcoal">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-4xl md:text-5xl font-extrabold text-white mb-4 tracking-tight">

@@ -44,7 +44,10 @@ const Contact = () => {
     const data = new FormData(form);
 
     try {
-      const response = await fetch("https://formsubmit.co/hello@doughandbeats.co.uk", {
+      // FormSubmit.co prefers direct form submission over fetch for better reliability
+      const formAction = "https://formsubmit.co/ajax/hello@doughandbeats.co.uk";
+      
+      const response = await fetch(formAction, {
         method: "POST",
         body: data,
         headers: {
@@ -52,14 +55,18 @@ const Contact = () => {
         }
       });
 
-      if (response.ok) {
+      const result = await response.json();
+
+      if (response.ok && result.success === "true") {
         toast.success("Your message has been sent successfully!");
         setIsSubmitted(true);
       } else {
-        toast.error("Something went wrong. Please try again.");
+        console.error("Form submission error:", result);
+        toast.error(formText?.errors?.generic || "Something went wrong. Please try again.");
       }
     } catch (error) {
-      toast.error("An error occurred. Please check your connection and try again.");
+      console.error("Form submission error:", error);
+      toast.error(formText?.errors?.network || "An error occurred. Please check your connection and try again.");
     } finally {
       setIsSubmitting(false);
     }
@@ -108,8 +115,13 @@ const Contact = () => {
                   </Button>
                 </div>
               ) : (
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit} action="https://formsubmit.co/hello@doughandbeats.co.uk" method="POST">
+                  {/* FormSubmit.co configuration fields */}
                   <input type="hidden" name="_subject" value={formText?.emailSubject} />
+                  <input type="hidden" name="_captcha" value="false" />
+                  <input type="hidden" name="_template" value="table" />
+                  <input type="hidden" name="_next" value={typeof window !== 'undefined' ? window.location.href : ''} />
+                  <input type="hidden" name="_autoresponse" value="Thank you for contacting Dough & Beats. We've received your inquiry and will get back to you soon!" />
                   <input type="text" name="_honey" style={{ display: 'none' }} />
 
                   <div className="space-y-8">
@@ -162,7 +174,6 @@ const Contact = () => {
                           name="guestCount"
                           type="number" 
                           placeholder={formText?.fields?.guestCount?.placeholder}
-                          required 
                           value={formData.guestCount}
                           onChange={(e) => handleChange('guestCount', e.target.value)}
                           className="mt-2 text-lg p-6"
@@ -204,6 +215,11 @@ const Contact = () => {
                     </div>
 
                     <div className="text-center">
+                      <noscript>
+                        <div className="text-brand-tomato mb-4">
+                          This form works without JavaScript, but for the best experience, please enable JavaScript in your browser.
+                        </div>
+                      </noscript>
                       <Button 
                         type="submit" 
                         size="lg"
