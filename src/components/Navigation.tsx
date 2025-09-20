@@ -23,7 +23,6 @@ const Navigation = () => {
     { to: "/", label: "Home" },
     { to: "/about", label: "About" },
     { to: "/contact", label: "Contact" },
-    { to: "/instagram", label: "Instagram" },
   ];
 
   const toggleMenu = () => setIsOpen(!isOpen);

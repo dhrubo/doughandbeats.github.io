@@ -41,10 +41,19 @@ const Contact = () => {
     e.preventDefault();
     setIsSubmitting(true);
     const form = e.target as HTMLFormElement;
+    
+    // For GitHub Pages, switch to direct form submission instead of AJAX
+    if (window.location.hostname.includes('github.io')) {
+      // GitHub Pages deployment - use direct form submission
+      console.log('GitHub Pages detected, using direct form submission');
+      form.submit(); // This will do a full page submission/redirect
+      return; // Don't execute the rest of the function
+    }
+    
+    // Local development - use AJAX
     const data = new FormData(form);
 
     try {
-      // FormSubmit.co prefers direct form submission over fetch for better reliability
       const formAction = "https://formsubmit.co/ajax/hello@doughandbeats.co.uk";
       
       const response = await fetch(formAction, {
@@ -115,12 +124,21 @@ const Contact = () => {
                   </Button>
                 </div>
               ) : (
-                <form onSubmit={handleSubmit} action="https://formsubmit.co/hello@doughandbeats.co.uk" method="POST">
+                <form 
+                  onSubmit={handleSubmit} 
+                  action="https://formsubmit.co/hello@doughandbeats.co.uk" 
+                  method="POST"
+                  encType="multipart/form-data"
+                >
                   {/* FormSubmit.co configuration fields */}
-                  <input type="hidden" name="_subject" value={formText?.emailSubject} />
+                  <input type="hidden" name="_subject" value={formText?.emailSubject || "New event inquiry from website"} />
                   <input type="hidden" name="_captcha" value="false" />
                   <input type="hidden" name="_template" value="table" />
-                  <input type="hidden" name="_next" value={typeof window !== 'undefined' ? window.location.href : ''} />
+                  {/* Force absolute URL for GitHub Pages */}
+                  <input type="hidden" name="_next" value={typeof window !== 'undefined' ? 
+                    `${window.location.protocol}//${window.location.host}${window.location.pathname}?submitted=true` : 
+                    "https://doughandbeats.github.io/contact?submitted=true"
+                  } />
                   <input type="hidden" name="_autoresponse" value="Thank you for contacting Dough & Beats. We've received your inquiry and will get back to you soon!" />
                   <input type="text" name="_honey" style={{ display: 'none' }} />
 
