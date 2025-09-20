@@ -176,69 +176,7 @@ function processMediaData(mediaList) {
     }));
 }
 
-/**
- * Create fallback data if API fails
- */
-function createFallbackData() {
-  console.log('🎨 Creating fallback data...');
-  
-  const colors = [
-    '#FF6B35', '#F7931E', '#FFD23F', '#06FFA5', '#118AB2', 
-    '#073B4C', '#EF476F', '#FFD166', '#06D6A0'
-  ];
 
-  const captions = [
-    'Fresh neapolitan sandwiches (panuozzo) straight from our wood-fired oven! 🔥🥖 #DoughAndBeats #Panuozzo #Neapolitan',
-    'Behind the scenes: Creating the perfect dough for our signature panuozzi 👨‍🍳✨ #BehindTheScenes #ArtisanBread',
-    'Wood-fired perfection! Our oven reaching the perfect temperature for authentic Neapolitan flavors 🔥🍕 #WoodFired #Authentic',
-    'Fresh ingredients make all the difference! Local produce for our gourmet panuozzi 🥬🍅 #LocalProduce #Fresh',
-    'The moment of truth - perfectly golden panuozzo fresh from the oven! 🥖✨ #PerfectBake #GoldenCrust',
-    'Our signature panuozzo with premium ingredients - taste the difference! 🤤 #Signature #Premium #Delicious',
-    'Artisan craftsmanship meets modern flavors 🎨🍞 Every panuozzo is a work of art! #Artisan #Craftsmanship',
-    'Weekend vibes with our gourmet panuozzi selection! What\'s your favorite? 🤔🥖 #Weekend #Gourmet #Selection',
-    'Ready for another busy day of serving delicious panuozzi across London! 🚐🍕 #MobileFood #London'
-  ];
-
-  const createSVGPlaceholder = (color, index) => {
-    const foodEmojis = ['🍕', '🥖', '🔥', '🥬', '🍅', '👨‍🍳', '🎨', '🍞', '🚐'];
-    const emoji = foodEmojis[index - 1] || '🍕';
-    
-    const svg = `<svg width="400" height="400" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <rect width="400" height="400" fill="${color}"/>
-      <circle cx="200" cy="150" r="60" fill="white" opacity="0.2"/>
-      <text x="200" y="165" text-anchor="middle" font-size="48" fill="white">${emoji}</text>
-      <text x="200" y="250" text-anchor="middle" font-size="20" fill="white" font-family="Arial, sans-serif">Dough & Beats</text>
-      <text x="200" y="280" text-anchor="middle" font-size="16" fill="white" opacity="0.8" font-family="Arial, sans-serif">Fresh Panuozzo #${index}</text>
-    </svg>`;
-    
-    return `data:image/svg+xml;base64,${Buffer.from(svg).toString('base64')}`;
-  };
-  
-  const samplePosts = [];
-  for (let i = 1; i <= CONFIG.MAX_POSTS; i++) {
-    const colorfulSVG = createSVGPlaceholder(colors[i - 1], i);
-    
-    samplePosts.push({
-      id: `sample_${i}`,
-      image_url: colorfulSVG,
-      thumbnail_url: colorfulSVG,
-      permalink: 'https://www.instagram.com/dough_beats/',
-      caption: captions[i - 1] || 'Delicious panuozzo creation! 🍕🎵 #DoughAndBeats',
-      timestamp: new Date(Date.now() - (i * 24 * 60 * 60 * 1000)).toISOString(),
-      likes: Math.floor(Math.random() * 100) + 20,
-      local_image: ''
-    });
-  }
-  
-  return {
-    username: 'dough_beats',
-    updated_at: new Date().toISOString(),
-    posts: samplePosts,
-    total_posts: samplePosts.length,
-    note: "Fallback data - Instagram API not configured or failed",
-    api_configured: false
-  };
-}
 
 /**
  * Main function
@@ -247,11 +185,18 @@ async function fetchInstagramFeed() {
   try {
     // Check if API is configured
     if (CONFIG.ACCESS_TOKEN === 'YOUR_ACCESS_TOKEN_HERE' || CONFIG.USER_ID === 'YOUR_USER_ID_HERE') {
-      console.log('⚠️ Instagram API not configured, using fallback data...');
-      const fallbackData = createFallbackData();
-      fs.writeFileSync(CONFIG.OUTPUT_FILE, JSON.stringify(fallbackData, null, 2));
-      console.log(`✅ Fallback Instagram feed saved to ${CONFIG.OUTPUT_FILE}`);
-      return fallbackData;
+      console.log('⚠️ Instagram API not configured, creating an empty feed...');
+      const emptyData = {
+        username: 'dough_beats',
+        updated_at: new Date().toISOString(),
+        posts: [],
+        total_posts: 0,
+        error: "Instagram API not configured",
+        api_configured: false
+      };
+      fs.writeFileSync(CONFIG.OUTPUT_FILE, JSON.stringify(emptyData, null, 2));
+      console.log(`✅ Empty Instagram feed file saved to ${CONFIG.OUTPUT_FILE}`);
+      return emptyData;
     }
 
     // Fetch real Instagram data
@@ -259,10 +204,18 @@ async function fetchInstagramFeed() {
     const mediaList = await fetchInstagramMedia();
     
     if (!mediaList || mediaList.length === 0) {
-      console.log('⚠️ No media found, using fallback data...');
-      const fallbackData = createFallbackData();
-      fs.writeFileSync(CONFIG.OUTPUT_FILE, JSON.stringify(fallbackData, null, 2));
-      return fallbackData;
+      console.log('⚠️ No media found, creating an empty feed...');
+      const emptyData = {
+        username: 'dough_beats',
+        updated_at: new Date().toISOString(),
+        posts: [],
+        total_posts: 0,
+        error: "No media found",
+        api_configured: true
+      };
+      fs.writeFileSync(CONFIG.OUTPUT_FILE, JSON.stringify(emptyData, null, 2));
+      console.log(`✅ Empty Instagram feed file saved to ${CONFIG.OUTPUT_FILE}`);
+      return emptyData;
     }
 
     console.log(`✅ Found ${mediaList.length} posts`);
@@ -311,15 +264,21 @@ async function fetchInstagramFeed() {
     
   } catch (error) {
     console.error('❌ Error fetching Instagram feed:', error.message);
-    console.log('🎨 Falling back to sample data...');
+    console.log('📝 Creating an empty feed file...');
     
-    const fallbackData = createFallbackData();
-    fallbackData.error = error.message;
+    const emptyData = {
+      username: 'dough_beats',
+      updated_at: new Date().toISOString(),
+      posts: [],
+      total_posts: 0,
+      error: error.message,
+      api_configured: CONFIG.ACCESS_TOKEN !== 'YOUR_ACCESS_TOKEN_HERE' && CONFIG.USER_ID !== 'YOUR_USER_ID_HERE'
+    };
     
-    fs.writeFileSync(CONFIG.OUTPUT_FILE, JSON.stringify(fallbackData, null, 2));
+    fs.writeFileSync(CONFIG.OUTPUT_FILE, JSON.stringify(emptyData, null, 2));
     
-    console.log(`✅ Fallback Instagram feed saved to ${CONFIG.OUTPUT_FILE}`);
-    return fallbackData;
+    console.log(`✅ Empty Instagram feed file saved to ${CONFIG.OUTPUT_FILE}`);
+    return emptyData;
   }
 }
 
